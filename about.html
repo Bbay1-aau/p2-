@@ -3,42 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Om AlzCare</title>
+  <title>AlzCare Hjemmeside</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    Om AlzCare
+    Velkommen til AlzCare
   </header>
 
+  <nav style="text-align: center; margin: 1em 0;">
+    <a href="about.html" class="button">Om AlzCare</a>
+  </nav>
+
   <main>
-    <div class="card">
-      <h2>Hvad er AlzCare?</h2>
-      <p>
-        AlzCare er en personlig støttehjemmeside for mennesker med Alzheimers.
-        Den hjælper med daglig genkendelse, påmindelser om medicin og lægetider, samt et simpelt overblik over dagen.
-      </p>
+    <div class="card" id="greetingCard">
+      <!-- Personal message will go here -->
     </div>
 
     <div class="card">
-      <h3>Funktioner</h3>
-      <ul>
-        <li>📅 Dagsoversigt med rutiner</li>
-        <li>💊 Påmindelser om medicin og lægebesøg</li>
-        <li>👩‍❤️‍👨 Personlige beskeder med navn, alder og pårørende</li>
-      </ul>
+      <h3>Dagens påmindelser</h3>
+      <div class="notification" id="doctorReminder"></div>
+      <div class="notification" id="pillReminder"></div>
     </div>
 
     <div class="card">
-      <h3>Kontakt og support</h3>
-      <p>
-        Har du brug for hjælp, så kontakt os på:<br>
-        📧 support@alzcare.dk<br>
-        📞 +45 12 34 56 78
-      </p>
+      <h3>Dagens skema</h3>
+      <ul id="scheduleList"></ul>
     </div>
   </main>
 
+  <script src="app.js"></script>
 </body>
 </html>
