@@ -7,12 +7,45 @@
   <title>AlzCare Hjemmeside</title>
   <link rel="stylesheet" href="style.css">
 </head>
+<audio id="background-music" autoplay loop>
+    <source src="soft-piano-mp3.mp3" type="audio/mpeg">
+
+  </audio>
+  <div style="text-align: center; margin-top: 1em;">
+    <button class="button" onclick="toggleMusic()">🎵 Start/Stop Musik</button>
+  </div>
+  
+  <script>
+    const music = document.getElementById('background-music');
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
+    
 <body>
 
   <header>
     <img src="alz.logo.png" alt="AlzCare logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
     <span>Velkommen til AlzCare</span>
   </header>
+  <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; margin-top: 1em;">
+    <div style="text-align: center;">
+      <img src="anne.jpg" alt="Anna" style="width: 80px; border-radius: 60%;">
+      <p>Dig selv</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="erik.jpg" alt="Erik" style="width: 80px; border-radius: 60%;">
+      <p>Din mand</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="hunden.jpg" alt="Bella" style="width: 80px; border-radius: 60%;">
+      <p>Din hund</p>
+    </div>
+  </div>
 
   <main>
     <div class="card" id="greetingCard">
@@ -35,20 +68,7 @@
       <button class="button help-button" onclick="window.location.href='tel:112'">📞 Ring NU (akut)</button>
       <button class="button help-button" onclick="window.location.href='tel:+4512345678'">📱 Ring til pårørende</button>
     </div>
-    <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; margin-top: 1em;">
-        <div style="text-align: center;">
-          <img src="anne.jpg" alt="Anna" style="width: 80px; border-radius: 50%;">
-          <p>Dig selv</p>
-        </div>
-        <div style="text-align: center;">
-          <img src="erik.jpg" alt="Erik" style="width: 80px; border-radius: 50%;">
-          <p>Din mand</p>
-        </div>
-        <div style="text-align: center;">
-          <img src="hunden.jpg" alt="Bella" style="width: 80px; border-radius: 50%;">
-          <p>Din hund</p>
-        </div>
-      </div>
+ 
       
   </main>
 
