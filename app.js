@@ -16,7 +16,7 @@
 };
 
 document.getElementById("greetingCard").innerHTML = `
-  <h2>Godmorgen, ${patient.name} 🌞</h2>
+  <h2>Godmorgen til byt dag i den skønne verden, ${patient.name} 🌞</h2>
   <p>I dag er ${new Date().toLocaleDateString("da-DK", { weekday: 'long', day: 'numeric', month: 'long' })}</p>
   <p>Du er ${patient.age} år gammel</p>
   <p>Din mand hedder ${patient.husband} ❤️</p>
