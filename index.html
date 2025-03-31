@@ -1,3 +1,4 @@
+// index.html
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -9,7 +10,8 @@
 <body>
 
   <header>
-    Velkommen til AlzCare
+    <img src="logo.png" alt="AlzCare logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
+    <span>Velkommen til AlzCare</span>
   </header>
 
   <main>
@@ -26,6 +28,12 @@
     <div class="card">
       <h3>Dagens skema</h3>
       <ul id="scheduleList"></ul>
+    </div>
+
+    <div class="card">
+      <h3>Få hjælp</h3>
+      <button class="button help-button" onclick="window.location.href='tel:112'">📞 Ring NU (akut)</button>
+      <button class="button help-button" onclick="window.location.href='tel:+4512345678'">📱 Ring til pårørende</button>
     </div>
   </main>
 
