@@ -6,31 +6,21 @@
   <title>AlzCare Hjemmeside</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<audio id="background-music" autoplay loop>
-    <source src="soft-piano-mp3.mp3" type="audio/mpeg">
-
-  </audio>
-  <div style="text-align: center; margin-top: 1em;">
-    <button class="button" onclick="toggleMusic()">🎵 Start/Stop Musik</button>
-  </div>
-  
-  <script>
-    const music = document.getElementById('background-music');
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
-      }
-    }
-  </script>
-    
 <body>
 
   <header>
-    <img src="alz.logo.png" alt="AlzCare logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
-    <span>Velkommen til AlzCare</span>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <div style="margin-left: 1em;">
+        <button class="button" onclick="toggleMusic()">🎵 Start/Stop Musik</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="alz.logo.png" alt="AlzCare logo" style="height: 40px;">
+        <span>Velkommen til AlzCare</span>
+      </div>
+      <div style="width: 100px;"></div>
+    </div>
   </header>
+
   <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; margin-top: 1em;">
     <div style="text-align: center;">
       <img src="anne.jpg" alt="Anna" style="width: 80px; border-radius: 60%;">
@@ -67,9 +57,22 @@
       <button class="button help-button" onclick="window.location.href='tel:112'">📞 Ring NU (akut)</button>
       <button class="button help-button" onclick="window.location.href='tel:+4512345678'">📱 Ring til pårørende</button>
     </div>
- 
-      
   </main>
+
+  <audio id="background-music" autoplay loop>
+    <source src="soft-piano-mp3.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const music = document.getElementById('background-music');
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
 
   <script src="app.js"></script>
 </body>
