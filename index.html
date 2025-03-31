@@ -7,9 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <style>
     .music-button-container {
-      position: absolute;
-      top: 1em;
-      left: 1em;
+      margin-left: 1em;
     }
     .greeting-heading {
       font-size: 1.4em;
@@ -19,14 +17,16 @@
 </head>
 <body>
 
-  <div class="music-button-container">
-    <button class="button" onclick="toggleMusic()">🎵 Start/Stop Musik</button>
-  </div>
-
   <header>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-      <img src="alz.logo.png" alt="AlzCare logo" style="height: 40px;">
-      <span>Velkommen til AlzCare</span>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <div class="music-button-container">
+        <button class="button" onclick="toggleMusic()">🎵 Start/Stop Musik</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="alz.logo.png" alt="AlzCare logo" style="height: 40px;">
+        <span>Velkommen til AlzCare</span>
+      </div>
+      <div style="width: 100px;"></div>
     </div>
   </header>
 
