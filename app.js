@@ -1,4 +1,3 @@
-// app.js
 const patient = {
   name: "Anna",
   age: 74,
@@ -16,7 +15,7 @@ const patient = {
 };
 
 document.getElementById("greetingCard").innerHTML = `
-  <h2>Godmorgen, ${patient.name} 🌞</h2>
+  <h2>Godmorgen til en ny dag i den skønne verden, ${patient.name} 🌞</h2>
   <p>I dag er ${new Date().toLocaleDateString("da-DK", { weekday: 'long', day: 'numeric', month: 'long' })}</p>
   <p>Du er ${patient.age} år gammel</p>
   <p>Din mand hedder ${patient.husband} ❤️</p>
