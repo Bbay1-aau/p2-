@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlzCare - Patient</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header med musik og titel -->
+  <header>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 1em;">
+      <div class="music-button-container">
+        <button class="button" onclick="toggleMusic()">🎵 Start/Stop Musik</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="alz.logo.png" alt="AlzCare logo" style="height: 40px;">
+        <span style="font-weight: bold; font-size: 1.2em;">Velkommen til AlzCare</span>
+      </div>
+      <div style="width: 100px;"></div>
+    </div>
+  </header>
+
+  <!-- Billeder af personen og pårørende -->
+  <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; margin-top: 1em; justify-content: center;">
+    <div style="text-align: center;">
+      <img src="anne.jpg" alt="Anna" style="width: 80px; border-radius: 60%;">
+      <p>Dig selv</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="erik.jpg" alt="Erik" style="width: 80px; border-radius: 60%;">
+      <p>Din mand</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="hunden.jpg" alt="Bella" style="width: 80px; border-radius: 60%;">
+      <p>Din hund</p>
+    </div>
+  </div>
+
+  <!-- Hovedindhold: dagens besked, påmindelser, skema -->
+  <main>
+    <div class="card" id="greetingCard"></div>
+
+    <div class="card">
+      <h3>Dagens påmindelser</h3>
+      <div class="notification" id="doctorReminder"></div>
+      <div class="notification" id="pillReminder"></div>
+    </div>
+
+    <div class="card">
+      <h3>Dagens skema</h3>
+      <ul id="scheduleList"></ul>
+    </div>
+
+    <div class="card">
+      <h3>Få hjælp</h3>
+      <button class="button help-button" onclick="window.location.href='tel:112'">📞 Ring NU (akut)</button>
+      <button class="button help-button" onclick="window.location.href='tel:93202628'">📱 Ring til pårørende</button>
+    </div>
+  </main>
+
+  <!-- Musikafspiller -->
+  <audio id="background-music" autoplay loop>
+    <source src="soft-piano-mp3.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Scripts: app.js og musikfunktioner -->
+  <script src="app.js"></script>
+  <script>
+    // Refererer til audio-elementet
+    const music = document.getElementById('background-music');
+
+    // Musik on/off funktion
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
+</body>
+</html>
