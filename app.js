@@ -31,3 +31,11 @@ patient.schedule.forEach(item => {
   li.textContent = item;
   scheduleList.appendChild(li);
 });
+function openLogin() { ... }
+function closeLogin() { ... }
+function login() {
+  if (role === "patient") {
+    window.location.href = "patient.html";
+  }
+}
+

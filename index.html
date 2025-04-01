@@ -5,32 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AlzCare Hjemmeside</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .music-button-container {
-      margin-left: 1em;
-    }
-    .greeting-heading {
-      font-size: 1.4em;
-      font-weight: 700;
-    }
-  </style>
 </head>
 <body>
 
   <header>
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 1em;">
       <div class="music-button-container">
         <button class="button" onclick="toggleMusic()">🎵 Start/Stop Musik</button>
       </div>
       <div style="display: flex; align-items: center; gap: 10px;">
         <img src="alz.logo.png" alt="AlzCare logo" style="height: 40px;">
-        <span>Velkommen til AlzCare</span>
+        <span style="font-weight: bold; font-size: 1.2em;">Velkommen til AlzCare</span>
       </div>
-      <div style="width: 100px;"></div>
+      <button class="login-button" onclick="openLogin()">🔐 Log ind</button>
     </div>
   </header>
 
-  <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; margin-top: 1em;">
+  <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; margin-top: 1em; justify-content: center;">
     <div style="text-align: center;">
       <img src="anne.jpg" alt="Anna" style="width: 80px; border-radius: 60%;">
       <p>Dig selv</p>
@@ -46,9 +37,7 @@
   </div>
 
   <main>
-    <div class="card" id="greetingCard">
-      <!-- Personal message will go here -->
-    </div>
+    <div class="card" id="greetingCard"></div>
 
     <div class="card">
       <h3>Dagens påmindelser</h3>
@@ -64,25 +53,73 @@
     <div class="card">
       <h3>Få hjælp</h3>
       <button class="button help-button" onclick="window.location.href='tel:112'">📞 Ring NU (akut)</button>
-      <button class="button help-button" onclick="window.location.href='tel:+4512345678'">📱 Ring til pårørende</button>
+      <button class="button help-button" onclick="window.location.href='tel:93202628'">📱 Ring til pårørende</button>
     </div>
   </main>
+
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLogin()">&times;</span>
+      <h2>Log ind</h2>
+      <label for="role">Vælg rolle:</label>
+      <select id="role">
+        <option value="patient">Patient</option>
+        <option value="family">Familie</option>
+        <option value="doctor">Læge</option>
+      </select>
+      <label for="username">Brugernavn:</label>
+      <input type="text" id="username" />
+      <label for="password">Kodeord:</label>
+      <input type="password" id="password" />
+      <button onclick="login()">Log ind</button>
+    </div>
+  </div>
 
   <audio id="background-music" autoplay loop>
     <source src="soft-piano-mp3.mp3" type="audio/mpeg">
   </audio>
 
+  <script src="app.js"></script>
   <script>
+    // Henter musik-elementet fra HTML'en
     const music = document.getElementById('background-music');
+  
+    // Funktion til at afspille eller pause baggrundsmusikken
     function toggleMusic() {
       if (music.paused) {
-        music.play();
+        music.play(); // Starter musikken hvis den er på pause
       } else {
-        music.pause();
+        music.pause(); // Pauser musikken hvis den spiller
+      }
+    }
+  
+    // Viser login-popup'en ved at ændre dens CSS-display til 'block'
+    function openLogin() {
+      document.getElementById("loginModal").style.display = "block";
+    }
+  
+    // Skjuler login-popup'en ved at ændre dens CSS-display til 'none'
+    function closeLogin() {
+      document.getElementById("loginModal").style.display = "none";
+    }
+  
+    // Henter brugerens valg og input og styrer navigation afhængig af rolle
+    function login() {
+      const role = document.getElementById("role").value; // Gemmer valgt rolle
+      const username = document.getElementById("username").value; // Gemmer brugernavn
+      const password = document.getElementById("password").value; // Gemmer kodeord
+  
+      // Tjekker hvilken rolle der er valgt og sender brugeren videre
+      if (role === "patient") {
+        alert("Logget ind som patient!");
+        window.location.href = "patient.html"; // Navigerer til patient-siden
+      } else if (role === "family") {
+        alert("Logget ind som familie!");
+        window.location.href = "family.html"; // Navigerer til familiesiden
+      } else if (role === "doctor") {
+        alert("Logget ind som læge!");
+        window.location.href = "doctor.html"; // Navigerer til lægesiden
       }
     }
   </script>
-
-  <script src="app.js"></script>
-</body>
-</html>
+  
