@@ -3,123 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AlzCare Hjemmeside</title>
+  <title>AlzCare - Forside</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Stil til login-popup placering midt på siden */
+    .modal-content {
+      margin-top: 10vh;
+    }
+    .header-box {
+      border: 2px solid black;
+      padding: 10px;
+      font-weight: bold;
+    }
+    .info-box {
+      border: 2px solid black;
+      padding: 1em;
+      margin: 2em auto;
+      width: 90%;
+      max-width: 700px;
+      font-size: 1.3em;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
+  <!-- Header med logo, titel og login placeret i bokse -->
   <header>
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 1em;">
-      <div class="music-button-container">
-        <button class="button" onclick="toggleMusic()">🎵 Start/Stop Musik</button>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1em; max-width: 1100px; margin: auto;">
+      <div class="header-box">Logo</div>
+      <div class="header-box">Alzcare</div>
+      <div class="header-box">
+        <button class="login-button" onclick="openLogin()">🔐 Log ind</button>
       </div>
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <img src="alz.logo.png" alt="AlzCare logo" style="height: 40px;">
-        <span style="font-weight: bold; font-size: 1.2em;">Velkommen til AlzCare</span>
-      </div>
-      <button class="login-button" onclick="openLogin()">🔐 Log ind</button>
     </div>
   </header>
 
-  <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; margin-top: 1em; justify-content: center;">
-    <div style="text-align: center;">
-      <img src="anne.jpg" alt="Anna" style="width: 80px; border-radius: 60%;">
-      <p>Dig selv</p>
-    </div>
-    <div style="text-align: center;">
-      <img src="erik.jpg" alt="Erik" style="width: 80px; border-radius: 60%;">
-      <p>Din mand</p>
-    </div>
-    <div style="text-align: center;">
-      <img src="hunden.jpg" alt="Bella" style="width: 80px; border-radius: 60%;">
-      <p>Din hund</p>
-    </div>
-  </div>
-
+  <!-- Fakta/info midt på siden -->
   <main>
-    <div class="card" id="greetingCard"></div>
-
-    <div class="card">
-      <h3>Dagens påmindelser</h3>
-      <div class="notification" id="doctorReminder"></div>
-      <div class="notification" id="pillReminder"></div>
-    </div>
-
-    <div class="card">
-      <h3>Dagens skema</h3>
-      <ul id="scheduleList"></ul>
-    </div>
-
-    <div class="card">
-      <h3>Få hjælp</h3>
-      <button class="button help-button" onclick="window.location.href='tel:112'">📞 Ring NU (akut)</button>
-      <button class="button help-button" onclick="window.location.href='tel:93202628'">📱 Ring til pårørende</button>
+    <div class="info-box">
+      <p><strong>Info om alz-facts</strong></p>
+      <p>Over 90.000 danskere lever med demens. Alzheimers er den mest almindelige form og påvirker især hukommelse og adfærd.</p>
+      <p>På verdensplan lever over 55 millioner med demens, og tallet stiger.</p>
     </div>
   </main>
 
+  <!-- Login-popup modal midt på siden -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeLogin()">&times;</span>
-      <h2>Log ind</h2>
-      <label for="role">Vælg rolle:</label>
+      <h2 style="text-align: center;">Log ind</h2>
+
+      <!-- Vælg rolle: patient, familie, læge -->
+      <label for="role">Vælg hvem du er:</label>
       <select id="role">
         <option value="patient">Patient</option>
         <option value="family">Familie</option>
         <option value="doctor">Læge</option>
       </select>
+
+      <!-- Brugernavn og kodeord -->
       <label for="username">Brugernavn:</label>
       <input type="text" id="username" />
+
       <label for="password">Kodeord:</label>
       <input type="password" id="password" />
-      <button onclick="login()">Log ind</button>
+
+      <button onclick="login()" style="margin-top: 1em;">Log ind</button>
     </div>
   </div>
 
-  <audio id="background-music" autoplay loop>
-    <source src="soft-piano-mp3.mp3" type="audio/mpeg">
-  </audio>
-
-  <script src="app.js"></script>
+  <!-- JavaScript: viser/skjuler login + redirect -->
   <script>
-    // Henter musik-elementet fra HTML'en
-    const music = document.getElementById('background-music');
-  
-    // Funktion til at afspille eller pause baggrundsmusikken
-    function toggleMusic() {
-      if (music.paused) {
-        music.play(); // Starter musikken hvis den er på pause
-      } else {
-        music.pause(); // Pauser musikken hvis den spiller
-      }
-    }
-  
-    // Viser login-popup'en ved at ændre dens CSS-display til 'block'
     function openLogin() {
       document.getElementById("loginModal").style.display = "block";
     }
-  
-    // Skjuler login-popup'en ved at ændre dens CSS-display til 'none'
+
     function closeLogin() {
       document.getElementById("loginModal").style.display = "none";
     }
-  
-    // Henter brugerens valg og input og styrer navigation afhængig af rolle
+
     function login() {
-      const role = document.getElementById("role").value; // Gemmer valgt rolle
-      const username = document.getElementById("username").value; // Gemmer brugernavn
-      const password = document.getElementById("password").value; // Gemmer kodeord
-  
-      // Tjekker hvilken rolle der er valgt og sender brugeren videre
+      const role = document.getElementById("role").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
       if (role === "patient") {
-        alert("Logget ind som patient!");
-        window.location.href = "patient.html"; // Navigerer til patient-siden
-      } else if (role === "family") {
-        alert("Logget ind som familie!");
-        window.location.href = "family.html"; // Navigerer til familiesiden
-      } else if (role === "doctor") {
-        alert("Logget ind som læge!");
-        window.location.href = "doctor.html"; // Navigerer til lægesiden
+        alert("Logget ind som patient");
+        window.location.href = "patient.html";
+      } else {
+        alert("Denne del er under udvikling.");
+        closeLogin();
       }
     }
   </script>
-  
+</body>
+</html>

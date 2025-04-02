@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AlzCare - Patient</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .emergency-box {
+      background-color: #fff3f3;
+      border: 2px solid #ff0000;
+      padding: 1em;
+      border-radius: 10px;
+      margin-left: 2em;
+      height: fit-content;
+    }
+    .emergency-box h3 {
+      color: #b30000;
+    }
+    .emergency-box button {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.5em;
+      padding: 0.7em;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .call-family { background-color: #cce5ff; }
+    .call-doctor { background-color: #ffe0b3; }
+    .call-emergency { background-color: #ffcccc; color: #900; font-weight: bold; }
+  </style>
 </head>
 <body>
 
@@ -22,43 +48,52 @@
     </div>
   </header>
 
-  <!-- Billeder af personen og pårørende -->
-  <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; margin-top: 1em; justify-content: center;">
-    <div style="text-align: center;">
-      <img src="anne.jpg" alt="Anna" style="width: 80px; border-radius: 60%;">
-      <p>Dig selv</p>
+  <!-- Hovedindhold delt i to kolonner -->
+  <div style="display: flex; justify-content: center; align-items: flex-start; gap: 2em; flex-wrap: wrap; margin-top: 2em;">
+
+    <!-- Venstre kolonne: billeder og kort -->
+    <div style="max-width: 600px;">
+      <!-- Billeder af personen og pårørende -->
+      <div style="display: flex; gap: 1em; align-items: center; flex-wrap: wrap; justify-content: center;">
+        <div style="text-align: center;">
+          <img src="anne.jpg" alt="Anna" style="width: 80px; border-radius: 60%;">
+          <p>Dig selv</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="erik.jpg" alt="Erik" style="width: 80px; border-radius: 60%;">
+          <p>Din mand</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="hunden.jpg" alt="Bella" style="width: 80px; border-radius: 60%;">
+          <p>Din hund</p>
+        </div>
+      </div>
+
+      <!-- Hovedindhold: dagens besked, påmindelser, skema -->
+      <main>
+        <div class="card" id="greetingCard"></div>
+
+        <div class="card">
+          <h3>Dagens påmindelser</h3>
+          <div class="notification" id="doctorReminder"></div>
+          <div class="notification" id="pillReminder"></div>
+        </div>
+
+        <div class="card">
+          <h3>Dagens skema</h3>
+          <ul id="scheduleList"></ul>
+        </div>
+      </main>
     </div>
-    <div style="text-align: center;">
-      <img src="erik.jpg" alt="Erik" style="width: 80px; border-radius: 60%;">
-      <p>Din mand</p>
-    </div>
-    <div style="text-align: center;">
-      <img src="hunden.jpg" alt="Bella" style="width: 80px; border-radius: 60%;">
-      <p>Din hund</p>
+
+    <!-- Højre kolonne: akut opkaldsboks -->
+    <div class="emergency-box">
+      <h3>📞 Få hjælp</h3>
+      <button class="call-family" onclick="window.location.href='tel:+4522334455'">Ring til familien</button>
+      <button class="call-doctor" onclick="window.location.href='tel:+4533445566'">Ring til lægen</button>
+      <button class="call-emergency" onclick="window.location.href='tel:112'">🔴 Ring 112 (AKUT)</button>
     </div>
   </div>
-
-  <!-- Hovedindhold: dagens besked, påmindelser, skema -->
-  <main>
-    <div class="card" id="greetingCard"></div>
-
-    <div class="card">
-      <h3>Dagens påmindelser</h3>
-      <div class="notification" id="doctorReminder"></div>
-      <div class="notification" id="pillReminder"></div>
-    </div>
-
-    <div class="card">
-      <h3>Dagens skema</h3>
-      <ul id="scheduleList"></ul>
-    </div>
-
-    <div class="card">
-      <h3>Få hjælp</h3>
-      <button class="button help-button" onclick="window.location.href='tel:112'">📞 Ring NU (akut)</button>
-      <button class="button help-button" onclick="window.location.href='tel:93202628'">📱 Ring til pårørende</button>
-    </div>
-  </main>
 
   <!-- Musikafspiller -->
   <audio id="background-music" autoplay loop>
@@ -68,10 +103,8 @@
   <!-- Scripts: app.js og musikfunktioner -->
   <script src="app.js"></script>
   <script>
-    // Refererer til audio-elementet
+    // Musik-funktion
     const music = document.getElementById('background-music');
-
-    // Musik on/off funktion
     function toggleMusic() {
       if (music.paused) {
         music.play();
