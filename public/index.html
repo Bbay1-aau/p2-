@@ -1,0 +1,39 @@
+<script>
+  // Åbner login-popup
+  function openLogin() {
+    document.getElementById("loginModal").style.display = "block";
+  }
+
+  // Lukker popup
+  function closeLogin() {
+    document.getElementById("loginModal").style.display = "none";
+  }
+
+  // Logger ind via backend med fetch
+  function login() {
+    const role = document.getElementById("role").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Sender data til serveren som POST
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ role, username, password })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error("Forkert login");
+      return res.json();
+    })
+    .then(data => {
+      // Redirect til den rigtige side
+      window.location.href = data.redirect;
+    })
+    .catch(err => {
+      alert("Login mislykkedes. Tjek brugernavn og adgangskode.");
+      console.error(err);
+    });
+  }
+</script>
